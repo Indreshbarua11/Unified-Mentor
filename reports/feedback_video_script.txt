@@ -1,0 +1,11 @@
+Hello, my project name is Predictive Forecasting of Care Load and Placement Demand.
+
+The goal of this project is to forecast future care load and discharge demand using historical daily data.
+
+I used Python for data processing and machine learning, pandas for cleaning the dataset, scikit-learn and statsmodels for forecasting models, Plotly for charts, and Streamlit for the web application.
+
+The app shows important results such as latest care load, future forecast, capacity risk, model comparison, and a downloadable forecast table.
+
+In this project, I learned how to clean real-world time-series data, create useful forecasting features, compare multiple models, and build a simple dashboard for decision support.
+
+This project helped me understand how predictive analytics can support planning, capacity management, and better operational decisions.

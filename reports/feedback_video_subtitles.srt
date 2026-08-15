@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:08,000
+Predictive Forecasting of Care Load and Placement Demand
+
+2
+00:00:08,000 --> 00:00:17,000
+This project forecasts future care load and discharge demand using historical daily data.
+
+3
+00:00:17,000 --> 00:00:29,000
+Tools used: Python, pandas, scikit-learn, statsmodels, Plotly, and Streamlit.
+
+4
+00:00:29,000 --> 00:00:41,000
+The app shows latest care load, future forecast, capacity risk, model comparison, and downloadable results.
+
+5
+00:00:41,000 --> 00:00:54,000
+I learned data cleaning, feature engineering, time-series forecasting, model evaluation, and dashboard deployment.
+
+6
+00:00:54,000 --> 00:01:06,000
+This project shows how predictive analytics can support planning and operational decisions.
