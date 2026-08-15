@@ -1,21 +1,21 @@
 # Executive Summary
 
-## Predictive Forecasting of Care Load & Placement Demand
+## Predictive Forecasting of Care Load and Placement Demand
 
-The UAC daily dataset was cleaned, regularized to a daily calendar, and used to compare baseline, statistical-style, and feature-based forecasting models for short-term HHS planning.
+The daily dataset for unaccompanied children was cleaned, regularized to a daily calendar, and used to compare baseline, statistical-style, and feature-based forecasting models for short-term care planning.
 
 ## Current Operating Picture
 
 - Data coverage: 2023-01-12 to 2025-12-21
-- Latest reported HHS care load: 2,484.0 children
+- Latest reported care load: 2,484.0 children
 - Latest reported discharges: 14.0 children
 - Latest net pressure: -3.0 transfers minus discharges
 
 ## Forecast Signals
 
-- Best care-load model in the 90-day holdout: Random Forest Regressor with MAE 51.1
-- Best discharge-demand model in the 90-day holdout: Feature regression with MAE 3.2
-- 30-day HHS care-load forecast: 2,552.1 children, 95% interval 1,882.4 to 3,221.9
+- Best care-load model in the 90-day holdout: Random Forest Regressor with mean absolute error of 51.1
+- Best discharge-demand model in the 90-day holdout: Feature Regression with mean absolute error of 3.2
+- 30-day care-load forecast: 2,552.1 children, 95% interval 1,882.4 to 3,221.9
 - 30-day discharge-demand forecast: 13.6 children/day, 95% interval 0.0 to 56.3
 
 ## Planning Recommendations
