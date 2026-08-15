@@ -1,11 +1,13 @@
-Hello, my project name is Predictive Forecasting of Care Load and Placement Demand.
+Hello, my name is Indresh Barua, and this is my project feedback video for Predictive Forecasting of Care Load and Placement Demand.
 
-The goal of this project is to forecast future care load and discharge demand using historical daily data.
+The main objective of this project is to forecast future care load and discharge demand using historical daily data. The project is designed to support better planning, capacity monitoring, and operational decision-making.
 
-I used Python for data processing and machine learning, pandas for cleaning the dataset, scikit-learn and statsmodels for forecasting models, Plotly for charts, and Streamlit for the web application.
+I cleaned the dataset, handled missing dates, prepared time-series features, and created lag features, rolling averages, calendar indicators, and a net pressure signal.
 
-The app shows important results such as latest care load, future forecast, capacity risk, model comparison, and a downloadable forecast table.
+For modeling, I compared multiple forecasting approaches, including baseline models, moving average methods, exponential smoothing, trend regression, feature regression, and random forest regression.
 
-In this project, I learned how to clean real-world time-series data, create useful forecasting features, compare multiple models, and build a simple dashboard for decision support.
+The final Streamlit app is simple and easy to use. It shows the latest care load, future forecast values, capacity risk, model comparison, forecast tables, and downloadable results.
 
-This project helped me understand how predictive analytics can support planning, capacity management, and better operational decisions.
+Through this project, I learned how to work with real-world time-series data, evaluate forecasting models, create an interactive dashboard, and present analytical results in a user-friendly way.
+
+Overall, this project improved my understanding of predictive analytics and how machine learning can help in planning resources and managing future demand.

@@ -1,0 +1,23 @@
+[Script Info]
+Title: Project Feedback Video
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,50,&H00FFFFFF,&H000000FF,&H00202A36,&H90000000,-1,0,0,0,100,100,0,0,1,2,1,5,80,80,60,1
+Style: Subtitle,Arial,30,&H00F2F7FF,&H000000FF,&H00202A36,&H90000000,0,0,0,0,100,100,0,0,1,2,1,5,95,95,80,1
+Style: Footer,Arial,24,&H00D9F0F2,&H000000FF,&H00202A36,&H70000000,0,0,0,0,100,100,0,0,1,1,0,2,80,80,36,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:07.00,Title,,0,0,0,,Predictive Forecasting of Care Load\Nand Placement Demand
+Dialogue: 0,0:00:07.00,0:00:15.00,Subtitle,,0,0,0,,Project Feedback Video\NIndresh Barua
+Dialogue: 0,0:00:15.00,0:00:27.00,Subtitle,,0,0,0,,Objective\NForecast future care load and discharge demand\Nusing historical daily data.
+Dialogue: 0,0:00:27.00,0:00:39.00,Subtitle,,0,0,0,,Data Preparation\NCleaned records, handled missing dates,\Ncreated lag features and rolling averages.
+Dialogue: 0,0:00:39.00,0:00:51.00,Subtitle,,0,0,0,,Forecasting Models\NCompared baseline, moving average,\Nexponential smoothing, regression, and random forest models.
+Dialogue: 0,0:00:51.00,0:01:04.00,Subtitle,,0,0,0,,Streamlit Application\NShows key metrics, forecast charts,\Ncapacity risk, model comparison, and downloadable results.
+Dialogue: 0,0:01:04.00,0:01:18.00,Subtitle,,0,0,0,,Learning Outcome\NImproved my skills in time-series forecasting,\Nmodel evaluation, and dashboard development.
+Dialogue: 0,0:00:00.00,0:01:18.00,Footer,,0,0,0,,Unified Mentor Project Submission
