@@ -15,7 +15,7 @@ from src.data_prep import DISPLAY_NAMES, load_uac_data
 from src.forecasting import MODEL_REGISTRY, make_forecast
 
 
-st.set_page_config(page_title="UAC Care Load Forecasting", layout="wide")
+st.set_page_config(page_title="Care Load and Placement Demand Forecasting", layout="wide")
 
 
 @st.cache_data
@@ -74,21 +74,25 @@ def line_chart(history: pd.DataFrame, forecast: pd.DataFrame, target: str) -> No
 
 df = get_data()
 
-st.title("Predictive Forecasting of Care Load & Placement Demand")
+st.title("Predictive Forecasting of Care Load and Placement Demand")
+st.caption(
+    "An interactive forecasting dashboard for estimating future care load, discharge demand, "
+    "and potential capacity stress."
+)
 
 with st.sidebar:
     st.header("Forecast Controls")
-    horizon = st.slider("Forecast horizon", 7, 60, 30, step=1)
+    horizon = st.slider("Forecast horizon in days", 7, 60, 30, step=1)
     target = st.radio(
-        "Forecast target",
+        "Select forecast target",
         ["hhs_care_load", "hhs_discharges"],
         format_func=lambda x: DISPLAY_NAMES[x],
     )
-    model_options = ["Auto best model"] + list(MODEL_REGISTRY.keys())
-    model_choice = st.selectbox("Model", model_options)
-    selected_model = None if model_choice == "Auto best model" else model_choice
+    model_options = ["Automatically select best model"] + list(MODEL_REGISTRY.keys())
+    model_choice = st.selectbox("Forecasting model", model_options)
+    selected_model = None if model_choice == "Automatically select best model" else model_choice
     default_capacity = int(max(df["hhs_care_load"].tail(90).max() * 1.1, df["hhs_care_load"].iloc[-1] + 250))
-    capacity = st.number_input("HHS care capacity threshold", min_value=0, value=default_capacity, step=50)
+    capacity = st.number_input("Care capacity threshold", min_value=0, value=default_capacity, step=50)
 
 forecast, metrics, backtest = get_forecast(target, horizon, selected_model)
 active_model = forecast["model"].iloc[0]
@@ -99,28 +103,31 @@ breach_rows = forecast[forecast["upper_95"] >= capacity]
 lead_time = int(breach_rows["horizon_day"].iloc[0]) if not breach_rows.empty else None
 
 kpi1, kpi2, kpi3, kpi4 = st.columns(4)
-kpi1.metric("Latest HHS care load", f"{latest['hhs_care_load']:,.0f}")
+kpi1.metric("Latest care load", f"{latest['hhs_care_load']:,.0f}")
 kpi2.metric(f"{horizon}-day forecast", f"{last_forecast['forecast']:,.0f}")
-kpi3.metric("Breach probability", f"{prob:.1%}")
+kpi3.metric("Capacity breach probability", f"{prob:.1%}")
 kpi4.metric("Surge lead time", f"{lead_time} days" if lead_time else "No breach")
 
 tab_forecast, tab_discharge, tab_compare, tab_scenario = st.tabs(
-    ["Care Load Forecast", "Discharge Demand", "Model Comparison", "Scenario View"]
+    ["Care Load Forecast", "Discharge Demand Forecast", "Model Comparison", "Capacity Scenario"]
 )
 
 with tab_forecast:
     st.subheader(DISPLAY_NAMES[target])
     line_chart(df, forecast, target)
-    st.caption(f"Active model: {active_model}. Shaded band is an empirical 95% interval based on holdout residual variance.")
+    st.caption(
+        f"Active model: {active_model}. The shaded area shows an empirical 95% forecast interval "
+        "based on holdout residual variance."
+    )
 
 with tab_discharge:
     discharge_forecast, discharge_metrics, _ = get_forecast("hhs_discharges", horizon, None)
-    st.subheader("Discharge demand forecast")
+    st.subheader("Discharge Demand Forecast")
     line_chart(df, discharge_forecast, "hhs_discharges")
     st.dataframe(discharge_forecast.round(2), use_container_width=True, hide_index=True)
 
 with tab_compare:
-    st.subheader("Model evaluation on the final 90 days")
+    st.subheader("Model Evaluation on the Final 90 Days")
     display_metrics = metrics[["model", "MAE", "RMSE", "MAPE", "Forecast Accuracy (%)", "Residual Std"]].copy()
     st.dataframe(display_metrics.round(2), use_container_width=True, hide_index=True)
     if go is not None:
@@ -136,7 +143,7 @@ with tab_compare:
         st.line_chart(backtest.pivot(index="date", columns="model", values="predicted"))
 
 with tab_scenario:
-    st.subheader("Capacity stress scenario")
+    st.subheader("Capacity Stress Scenario")
     scenario = forecast.copy()
     scenario["capacity"] = capacity
     scenario["net_gap_vs_capacity"] = capacity - scenario["forecast"]
@@ -149,7 +156,7 @@ with tab_scenario:
         hide_index=True,
     )
     st.download_button(
-        "Download scenario CSV",
+        "Download Scenario CSV",
         scenario.to_csv(index=False).encode("utf-8"),
         file_name="uac_forecast_scenario.csv",
         mime="text/csv",
